@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#101a20" />
+  <link rel="icon" href="data:," />
+  <title>SKYWARD — Pacific Air Command</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="wordmark" href="#" aria-label="Skyward home"><span class="brand-mark">✳</span> SKYWARD<span class="brand-sub">AIR COMMAND</span></a>
+      <div class="top-right"><span class="season-tag"><i></i> PACIFIC CAMPAIGN · 1943</span><button class="icon-btn" id="soundBtn" aria-label="Toggle sound">♫</button><button class="pilot-chip"><span class="pilot-avatar">✦</span><span><b>LT. HAWKINS</b><small>ACE · LEVEL 04</small></span><span class="chevron">⌄</span></button></div>
+    </header>
+
+    <section class="screen active" id="hangarScreen">
+      <div class="hangar-layout">
+        <section class="hangar-main">
+          <div class="eyebrow"><span class="eyebrow-line"></span> FIELD BASE · MIDWAY ATOLL</div>
+          <div class="heading-row"><div><h1>THE SKY<br><em>IS YOURS.</em></h1><p class="intro">Take to the skies. Defend the Pacific.<br>Make history, one sortie at a time.</p></div><div class="mission-stamp"><span>ACTIVE</span><b>OPERATION<br>IRON TIDE</b><small>DAY 18 · 0600 HOURS</small></div></div>
+          <div class="plane-stage" id="planeStage">
+            <div class="stage-grid"></div><div class="stage-horizon"></div>
+            <div class="stage-label"><span>01 / AIRCRAFT DISPLAY</span><span class="display-id">A6M · ZERO-SEN</span></div>
+            <div class="stage-shadow"></div>
+            <canvas id="hangarCanvas" aria-label="Aircraft preview"></canvas>
+            <div class="stage-annotation ann-left"><span class="ann-dot"></span><span>TYPE 99<br><b>20MM CANNON</b></span></div>
+            <div class="stage-annotation ann-right"><span class="ann-dot"></span><span>LIGHTWEIGHT<br><b>HIGH MANEUVER</b></span></div>
+            <div class="stage-bottom"><span>SELECT AIRCRAFT</span><span class="stage-arrows"><button id="prevPlane" aria-label="Previous plane">←</button><b id="planeIndex">01 / 03</b><button id="nextPlane" aria-label="Next plane">→</button></span></div>
+          </div>
+          <div class="aircraft-picker" id="aircraftPicker"></div>
+        </section>
+        <aside class="hangar-side">
+          <div class="side-head"><span class="eyebrow">PILOT'S LOG</span><span class="status-pill"><i></i> READY</span></div>
+          <div class="pilot-card"><div class="rank-seal">✦</div><div><h3>Rookie no more.</h3><p>Your record speaks for itself, Lieutenant.</p></div></div>
+          <div class="record-grid"><div><small>SORTIES</small><b>12</b></div><div><small>CONFIRMED</small><b>38</b></div><div><small>ACCURACY</small><b>72<span>%</span></b></div></div>
+          <div class="divider"></div>
+          <div class="section-title"><span>FLIGHT LOADOUT</span><button id="resetLoadout">RESET</button></div>
+          <div class="loadout-row"><div class="loadout-icon">⌁</div><div><b>WING CANNONS</b><small>Type 99 · 20 mm</small></div><span class="equipped">EQUIPPED</span></div>
+          <div class="loadout-row"><div class="loadout-icon">◈</div><div><b>ORDNANCE</b><small id="ordnanceText">2 × 60 kg bomb</small></div><button class="cycle-btn" id="cycleOrdnance">CHANGE ↻</button></div>
+          <div class="loadout-row"><div class="loadout-icon">◉</div><div><b>PAINT SCHEME</b><small id="paintText">Imperial jade</small></div><button class="swatch" id="cyclePaint" aria-label="Change paint"><i></i><i></i><i></i><i></i></button></div>
+          <div class="divider"></div>
+          <div class="intel-card"><div class="intel-top"><span>✦ COMMAND INTEL</span><span>01 / 03</span></div><h3>Enemy patrols sighted</h3><p>Unidentified fighters reported 4 miles north of the reef. Expect resistance.</p><div class="intel-meta"><span>THREAT LEVEL</span><span class="threat-dots"><i></i><i></i><i></i><i></i><i class="dim"></i></span><b>MODERATE</b></div></div>
+          <button class="launch-btn" id="launchBtn"><span>LAUNCH SORTIE</span><b>→</b><small>ENGAGE THE ENEMY · 6 MIN</small></button>
+          <div class="control-hint">PRESS <kbd>ENTER</kbd> TO SCRAMBLE</div>
+        </aside>
+      </div>
+      <footer class="hangar-footer"><span>UNITED STATES NAVY · VF-6 FIGHTING SIX</span><span>⟡ &nbsp; WEATHER: SCATTERED CLOUDS &nbsp; · &nbsp; WIND 12 KTS</span><span>VER 1.4.3</span></footer>
+    </section>
+
+    <section class="screen game-screen" id="gameScreen">
+      <canvas id="gameCanvas" aria-label="Dogfight game"></canvas>
+      <div class="game-vignette"></div>
+      <div class="game-hud">
+        <div class="hud-top-left"><div class="hud-brand">✳ SKYWARD <small>VF-6 · MIDWAY</small></div><div class="mission-live"><span class="pulse"></span> OPERATION IRON TIDE <small>· SORTIE 13</small></div></div>
+        <div class="hud-center"><span>ALTITUDE</span><b id="altitude">4,200</b><small>FT</small><div class="alt-meter"><i></i></div></div>
+        <div class="hud-top-right"><div class="score-label">AIRCRAFT DESTROYED <b id="killCount">00</b></div><div class="timer"><span>TIME ON STATION</span><b id="timerText">06:00</b></div><button class="pause-btn" id="pauseBtn">Ⅱ</button></div>
+        <div class="objective-panel"><small>PRIMARY OBJECTIVE</small><b id="objectiveText">CLEAR THE HOSTILE PATROL</b><span id="objectiveCount">ENEMY AIRCRAFT &nbsp; <strong>0 / 8</strong></span><div class="objective-progress"><i id="objectiveProgress"></i></div></div>
+        <div class="weapon-panel"><span>WEAPON SELECT</span><div class="weapon-active"><b>01</b><span>WING CANNONS<small>20 MM · <strong id="ammoText">∞</strong></small></span><kbd>SPACE</kbd></div><div class="weapon-secondary"><b>02</b><span>ORDNANCE<small id="bombAmmo">BOMBS · 2 REMAIN</small></span><kbd>B</kbd></div></div>
+        <div class="health-panel"><div class="health-icon">✚</div><span>HULL INTEGRITY</span><b id="healthPct">100%</b><div class="health-bar"><i id="healthBar"></i></div><small>ARMOR PLATING <i>GOOD</i></small></div>
+        <div class="radar-panel"><div class="radar-head"><span>TACTICAL RADAR</span><span>RANGE 2.0 MI</span></div><div class="radar" id="radar"><div class="radar-sweep"></div><i class="radar-player"></i></div><div class="radar-legend"><i></i> FRIENDLY <i class="hostile-dot"></i> HOSTILE</div></div>
+        <div class="reticle" id="reticle"><i></i><b></b><i></i></div>
+        <div class="game-bottom"><span>✦ &nbsp; PACIFIC OCEAN · SECTOR 7</span><span class="flight-instructions"><kbd>W A S D</kbd> / <kbd>↑←↓→</kbd> FLY &nbsp; · &nbsp; <kbd>MOUSE</kbd> AIM &nbsp; · &nbsp; <kbd>CLICK</kbd> FIRE</span><span id="windReadout">WIND 12 KTS ↗</span></div>
+        <div class="touch-controls"><div class="touch-stick" id="touchStick"><span></span></div><button id="touchFire">FIRE</button><button id="touchBomb">BOMB</button></div>
+      </div>
+      <div class="overlay" id="pauseOverlay"><div class="overlay-card"><span class="eyebrow">SORTIE PAUSED</span><h2>TAKE A BREATHER.</h2><p>The skies will wait, Lieutenant.</p><button class="primary-action" id="resumeBtn">RESUME FLIGHT →</button><button class="text-action" id="quitBtn">RETURN TO HANGAR</button></div></div>
+      <div class="overlay" id="resultOverlay"><div class="overlay-card result-card"><span class="eyebrow" id="resultEyebrow">MISSION REPORT · VF-6</span><h2 id="resultTitle">SKY CLEARED.</h2><p id="resultCopy">Another day above the clouds.</p><div class="result-stats"><div><small>AIRCRAFT DOWN</small><b id="resultKills">0</b></div><div><small>ACCURACY</small><b id="resultAccuracy">0%</b></div><div><small>SCORE</small><b id="resultScore">0000</b></div></div><button class="primary-action" id="returnBtn">RETURN TO HANGAR →</button><button class="text-action" id="retryBtn">FLY AGAIN</button></div></div>
+      <div class="toast" id="toast"></div>
+    </section>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
