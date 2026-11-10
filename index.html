@@ -36,7 +36,7 @@
       </header>
       <section class="game-layout">
         <section class="story-column">
-          <div class="scene-head"><div><div class="eyebrow" id="scene-eyebrow">A WORLD WAITING</div><h1 id="scene-title">Every legend begins<br><em>with a name.</em></h1></div><div class="scene-actions"><button class="icon-button" id="sound-btn" title="Toggle ambience">♫</button><button class="icon-button" id="journal-btn" title="Open journal">☷</button></div></div>
+          <div class="scene-head"><div><div class="eyebrow" id="scene-eyebrow">A WORLD WAITING</div><h1 id="scene-title">Every legend begins<br><em>with a name.</em></h1></div><div class="scene-actions"><button class="icon-button" id="sound-btn" type="button" title="Turn on dark fantasy ambience" aria-label="Toggle dark fantasy ambience" aria-pressed="false">♫</button><button class="icon-button" id="journal-btn" title="Open journal">☷</button></div></div>
           <div class="scene-art" id="scene-art" aria-label="Illustration of the Vaelorian landscape"><div class="art-sun"></div><div class="art-moon"></div><div class="art-mountain mountain-back"></div><div class="art-mountain mountain-front"></div><div class="art-forest"></div><div class="art-road"></div><div class="art-caption"><span>THE SHATTERED MARCHES</span><i>—</i><span>AN UNMAPPED FRONTIER</span></div></div>
           <div class="story-body" id="story-body"><p class="lead">Beyond the mapped borders, the world is still being written.</p><p>Old kingdoms have turned to moss and rumor. Beneath their roads, something stirs—patient as winter, bright as a blade drawn in darkness. Here, no prophecy has chosen you. No story waits to be obeyed. There is only the road, the weather, and what you decide to do next.</p><p class="muted-copy">Before the first mile, tell us who will walk it.</p></div>
           <section class="creation-card" id="creation-card" aria-live="polite"></section>
@@ -51,6 +51,9 @@
         </aside>
       </section>
     </main>
+  </div>
+  <div class="dice-stage hidden" id="dice-stage" role="status" aria-live="polite" aria-label="Dice roll animation">
+    <div class="dice-card"><span class="dice-caption">THE FATES TURN</span><div class="d20-die" id="d20-die"><span id="d20-face">20</span></div><strong id="dice-result">A roll is cast…</strong><small id="dice-total"></small></div>
   </div>
   <div class="toast" id="toast" role="status"></div>
   <div class="modal-backdrop hidden" id="modal-backdrop"><section class="modal" id="modal" role="dialog" aria-modal="true"><button class="modal-close" id="modal-close" aria-label="Close">×</button><div id="modal-content"></div></section></div>
